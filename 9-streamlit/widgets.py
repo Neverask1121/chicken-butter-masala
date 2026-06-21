@@ -1,5 +1,7 @@
 ## To create more interactive applications
 
+
+import pandas as pd
 import streamlit as st
 
 st.title("StramLit text input")
@@ -16,3 +18,19 @@ st.write(f"Nigga selected: {choice}")
 
 if name:
   st.write(f"Hello, {name}")
+
+data = {
+  "Name" : ["John", "Jane", "Aditya", "Aisha"],
+  "Age" : [79, 67, 18, 13],
+  "City" : ["New York", "New York", "Hyderabad", "Hyderabad"]
+}
+
+df = pd.DataFrame(data)
+df.to_csv("sampleData.csv")
+st.write(df)
+
+uploaded_file=st.file_uploader("Choose a csv file", type = "csv")
+
+if uploaded_file is not None:
+  df=pd.read_csv(uploaded_file)
+  st.write(df)
